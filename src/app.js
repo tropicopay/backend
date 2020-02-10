@@ -21,6 +21,8 @@ class AppController {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+
+    console.log(mongoose.connection.client.s.url);
   }
 
 
