@@ -8,11 +8,11 @@ const PlaceController = require('./controllers/PlaceController');
 
 const routes = Router();
 
-routes.post('/Users', UserController.store);
+routes.post('/Users', upload.single('avatar'), UserController.store);
 routes.get('/Users', UserController.index);
 routes.delete('/Users', UserController.destroy);
 routes.put('/Users', UserController.update);
-routes.post('/Users', upload.single('avatar'), UserController.store);
+
 
 routes.post('/Places', PlaceController.store);
 routes.get('/Places', PlaceController.index);
