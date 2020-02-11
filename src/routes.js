@@ -1,10 +1,12 @@
 const { Router } = require('express');
-const uploadConfig = require('./config/upload');
 const multer = require('multer');
+const uploadConfig = require('./config/upload');
+
 const upload = multer(uploadConfig);
 
 const UserController = require('./controllers/UserController');
 const PlaceController = require('./controllers/PlaceController');
+const SessionController = require('./controllers/SessionController');
 
 const routes = Router();
 
@@ -19,5 +21,6 @@ routes.get('/Places', PlaceController.index);
 routes.delete('/Places', PlaceController.destroy);
 routes.put('/Places', PlaceController.update);
 
+// routes.post('/Sessions', SessionController.store);
 
 module.exports = routes;
