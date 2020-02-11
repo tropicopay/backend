@@ -2,6 +2,7 @@ const User = require('../models/User');
 
 module.exports = {
   async store(req, res) {
+    const { filename } = req.file;
     const {
       name, email, cpf, password,
     } = req.body;
@@ -16,6 +17,7 @@ module.exports = {
           cpf,
           password,
           created: Date(),
+          avatar_url: filename,
         });
 
         res.json(user);
