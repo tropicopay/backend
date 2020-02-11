@@ -2,6 +2,7 @@ const Place = require('../models/Place');
 
 module.exports = {
   async store(req, res) {
+    const { filename } = req.file;
     const {
       name,
       email,
@@ -27,6 +28,7 @@ module.exports = {
           password,
           location,
           created: Date(),
+          avatar_url: filename,
         });
 
         res.json(place);
