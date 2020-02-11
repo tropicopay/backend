@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.testing' : '.env',
+});
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -14,15 +16,13 @@ class AppController {
   }
 
   middlewares() {
-    this.express.use(express.json());
     this.express.use(cors());
+    this.express.use(express.json());
 
     mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
-    console.log(mongoose.connection.client.s.url);
   }
 
 
