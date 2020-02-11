@@ -6,7 +6,7 @@ module.exports = {
       name, email, cpf, password,
     } = req.body;
 
-    user = await User.findOne({ email });
+    let user = await User.findOne({ email });
 
     try {
       if (!user) {
@@ -39,7 +39,7 @@ module.exports = {
   async destroy(req, res) {
     const { _id } = req.query;
 
-    user = await User.findOne({ _id });
+    let user = await User.findOne({ _id });
 
     try {
       if (user) {
@@ -56,10 +56,12 @@ module.exports = {
 
   async update(req, res) {
     const {
-      _id, name, email, password, balance,
+      name, email, password, balance,
     } = req.body;
 
-    user = await User.findOne({ _id });
+    const { _id } = req.query;
+
+    const user = await User.findOne({ _id });
 
     try {
       if (user) {
@@ -67,6 +69,7 @@ module.exports = {
         user.email = email || user.email;
         user.password = password || user.password;
         user.balance = balance || user.balance;
+        user.updated = Date();
 
         user.save();
 
