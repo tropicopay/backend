@@ -1,4 +1,3 @@
-'use-strict';
 
 class SessionController {
   async store({ request, auth }) {
@@ -7,8 +6,6 @@ class SessionController {
       password,
     ]);
 
-    const { token } = await auth.attempt(email, password);
-
-    return { token };
+    // Here: develop user/place authentication rules
   }
 }
