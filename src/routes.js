@@ -12,19 +12,23 @@ const SessionController = require('./controllers/SessionController');
 
 const routes = Router();
 
-routes.post('/Sessions', SessionController.store);
-routes.post('/Users', upload.single('avatarUser'), UserController.store);
+const pathUsers = '/Users';
+const pathPlaces = '/Places';
+const pathSessions = '/Sessions';
+
+routes.post(pathSessions, SessionController.store);
+routes.post(pathUsers, upload.single('avatarUser'), UserController.store);
 
 routes.use(auth);
 
-routes.get('/Users', UserController.index);
-routes.delete('/Users', UserController.destroy);
-routes.put('/Users', UserController.update);
+routes.get(pathUsers, UserController.index);
+routes.delete(pathUsers, UserController.destroy);
+routes.put(pathUsers, UserController.update);
 
-routes.post('/Places', upload.single('avatarPlace'), PlaceController.store);
-routes.post('/Places', PlaceController.store);
-routes.get('/Places', PlaceController.index);
-routes.delete('/Places', PlaceController.destroy);
-routes.put('/Places', PlaceController.update);
+routes.post(pathPlaces, upload.single('avatarPlace'), PlaceController.store);
+routes.post(pathPlaces, PlaceController.store);
+routes.get(pathPlaces, PlaceController.index);
+routes.delete(pathPlaces, PlaceController.destroy);
+routes.put(pathPlaces, PlaceController.update);
 
 module.exports = routes;
