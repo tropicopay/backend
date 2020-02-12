@@ -10,16 +10,18 @@ const SessionController = require('./controllers/SessionController');
 
 const routes = Router();
 
-routes.post('/Users', upload.single('avatarUser'), UserController.store);
-routes.get('/Users', UserController.index);
-routes.delete('/Users', UserController.destroy);
-routes.put('/Users', UserController.update);
+const pathUsers = '/Users';
+routes.post(pathUsers, upload.single('avatarUser'), UserController.store);
+routes.get(pathUsers, UserController.index);
+routes.delete(pathUsers, UserController.destroy);
+routes.put(pathUsers, UserController.update);
 
-routes.post('/Places', upload.single('avatarPlace'), PlaceController.store);
-routes.post('/Places', PlaceController.store);
-routes.get('/Places', PlaceController.index);
-routes.delete('/Places', PlaceController.destroy);
-routes.put('/Places', PlaceController.update);
+const pathPlaces = '/Places';
+routes.post(pathPlaces, upload.single('avatarPlace'), PlaceController.store);
+routes.post(pathPlaces, PlaceController.store);
+routes.get(pathPlaces, PlaceController.index);
+routes.delete(pathPlaces, PlaceController.destroy);
+routes.put(pathPlaces, PlaceController.update);
 
 // routes.post('/Sessions', SessionController.store);
 
