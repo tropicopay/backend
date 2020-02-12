@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcryptjs = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
   avatar_url: { type: String },
@@ -11,4 +12,10 @@ const UserSchema = new mongoose.Schema({
   updated: { type: Date },
 });
 
+UserSchema.post('validate', async (next) => {
+  // eslint-disable-next-line no-param-reassign
+  next.password = await bcryptjs.hash(next.password, 8);
+});
+
+// eslint-disable-next-line new-cap
 module.exports = new mongoose.model('User', UserSchema);
