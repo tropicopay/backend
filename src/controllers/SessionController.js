@@ -1,11 +1,42 @@
+const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-class SessionController {
-  async store({ request, auth }) {
-    const { email, password } = request.only([
-      email,
-      password,
-    ]);
+const User = require('../models/User');
+const authConfig = require('../config/auth');
 
-    // Here: develop user/place authentication rules
-  }
-}
+module.exports = {
+  async store(req, res) {
+    try {
+      const { email, password } = req.body;
+
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        return res
+          .status(401)
+          .json({ error: 'O usuário informado não foi encontrado' });
+      }
+
+      if (!(await bcryptjs.compare(password, user.password))) {
+        return res
+          .status(401)
+          .json({ error: 'A senha informada está incorreta' });
+      }
+
+      const { _id, name } = user;
+
+      return res.json({
+        user: {
+          id: _id,
+          name,
+          email,
+        },
+        token: jwt.sign({ id: _id }, authConfig.secret, {
+          expiresIn: authConfig.expiresIn,
+        }),
+      });
+    } catch (error) {
+      return res.status(500);
+    }
+  },
+};
