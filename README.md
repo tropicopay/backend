@@ -1,6 +1,7 @@
 
 <p align="center">
   <img src="https://github.com/tropicopay/mobile_app/raw/master/assets/icon.png">
+  </br>
   <strong>Pague fácil, pague rápido</strong>
   </img>
 </p>
