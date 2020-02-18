@@ -1,14 +1,10 @@
 
 <p align="center">
   <img src="https://github.com/tropicopay/mobile_app/raw/master/assets/icon.png">
+  <strong>Pague fácil, pague rápido</strong>
   </img>
 </p>
 
-<center> 
-
-**Pague fácil, pague rápido** 
-
-</center>
 
 # VeloEz - React Native
 
